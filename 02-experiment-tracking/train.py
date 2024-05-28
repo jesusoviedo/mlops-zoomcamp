@@ -6,7 +6,7 @@ import mlflow
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import root_mean_squared_error
 
-mlflow.set_tracking_uri("sqlite:///mlflow.db")
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
 mlflow.set_experiment("homework_2")
     
 mlflow.sklearn.autolog() #mlflow.autolog()
