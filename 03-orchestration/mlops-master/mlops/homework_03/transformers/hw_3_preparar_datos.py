@@ -9,9 +9,7 @@ if 'transformer' not in globals():
 def read_dataframe(datfra:pd.DataFrame, **kwargs) -> pd.DataFrame:
 
     datfra = data_transformation.create_target_duration(datfra)
-
-    list_categorias = ['PULocationID', 'DOLocationID']
-    datfra = data_transformation.clean_data(datfra, list_categorias)
+    datfra = data_transformation.clean_data(datfra, kwargs['categoricas'].split(","))
     
     print(f"rows -> {datfra.shape[0]}")
 

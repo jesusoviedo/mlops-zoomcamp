@@ -13,7 +13,6 @@ def export_data(train_model, **kwargs):
 
     dicVec, linReg = train_model
 
-
     with mlflow.start_run():
         
         mlflow.sklearn.log_model(linReg, artifact_path="hw3_lin_reg_mod")

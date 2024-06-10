@@ -1,31 +1,25 @@
-from typing import Tuple
-
 import pandas as pd
-
+from typing import Tuple
+from utils_trip_data.model import model_accions
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import root_mean_squared_error
+
+if 'transformer' not in globals():
+    from mage_ai.data_preparation.decorators import transformer
+
 
 @transformer
-def transform(df: pd.DataFrame, **kwargs) -> Tuple[DictVectorizer, LinearRegression]:
-    # una funcion que seleccionar caracteristicas y target
-    categorical = ['PULocationID', 'DOLocationID']
-    target = 'duration'
-    y_train = df[target].values
+def transform(datfra: pd.DataFrame, **kwargs) -> Tuple[DictVectorizer, LinearRegression]:
+    X_train, y_train = model_accions.select_feature_and_target(datfra, 
+                                                        kwargs['categoricas'].split(","), 
+                                                        kwargs['target'])
+    
+    X_train, dictVectorizer = model_accions.feature_engineering(X_train)
+    y_pred, linearRegression = model_accions.train_predict_model(X_train, y_train)
+    
+    #metrics = model_accions.metrics_calculate(y_train, y_pred)
 
-    # una funcion que trabaja con el vectorizador
-    train_dicts = df[categorical].to_dict(orient='records')
-    dictVectorizer = DictVectorizer()
-    X_train = dictVectorizer.fit_transform(train_dicts)    
-
-    # una funcion que trabaja con el modelo
-    linearRegression = LinearRegression()
-    linearRegression.fit(X_train, y_train)
-
-    y_pred = linearRegression.predict(X_train)
-    rmse = root_mean_squared_error(y_train, y_pred)
-
-    print(f"rmse {rmse}")
-    print(f"intercept_ {linearRegression.intercept_}")
+    #print(f"metrics -> {metrics}")
+    print(f"intercept_ -> {linearRegression.intercept_}")
 
     return dictVectorizer, linearRegression
