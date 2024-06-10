@@ -1,0 +1,10 @@
+blocks:
+  c_inferencia:
+  - description: Cargue los datos para calcular el tiempo que va demorar su viaje
+    layout: []
+    name: Calcular tiempo de viaje
+    permissions: []
+    uuid: inferencia_xgboost.yaml
+    variables: {}
+layout: []
+permissions: []

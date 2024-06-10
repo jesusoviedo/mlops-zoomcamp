@@ -1,0 +1,14 @@
+triggers:
+- description: null
+  envs: []
+  last_enabled_at: 2024-06-06 15:09:45.107797+00:00
+  name: tiempo_viaje
+  pipeline_uuid: pl_predict_online_trips
+  schedule_interval: null
+  schedule_type: api
+  settings: null
+  sla: null
+  start_time: 2024-06-06 15:06:00+00:00
+  status: inactive
+  token: 32c6edb3e9fb463da615eb727fa4c50d
+  variables: {}

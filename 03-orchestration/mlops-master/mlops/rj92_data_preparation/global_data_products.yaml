@@ -1,0 +1,20 @@
+dataset_train_nyc_taxi:
+  object_type: pipeline
+  object_uuid: data_preparation
+  outdated_after:
+    seconds: 600
+  project: rj92_data_preparation
+  repo_path: /home/src/mlops/rj92_data_preparation
+  settings:
+    construir: {}
+gdp_model_xgboost:
+  object_type: pipeline
+  object_uuid: pl_train_xgboost
+  outdated_after:
+    seconds: 86400
+  outdated_starting_at:
+    hour_of_day: 12
+  project: rj92_data_preparation
+  repo_path: /home/src/mlops/rj92_data_preparation
+  settings:
+    model_xgboost: {}

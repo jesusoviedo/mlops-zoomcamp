@@ -1,0 +1,121 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: blue
+  configuration:
+    file_source:
+      path: rj92_data_preparation/custom/permisos.py
+  downstream_blocks:
+  - inicializar_infraestructura
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: permisos
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks: []
+  uuid: permisos
+- all_upstream_blocks_executed: true
+  color: purple
+  configuration:
+    file_source:
+      path: rj92_data_preparation/custom/inicializar_infraestructura.py
+  downstream_blocks:
+  - destruir_recursos
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: inicializar_infraestructura
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - permisos
+  uuid: inicializar_infraestructura
+- all_upstream_blocks_executed: true
+  color: teal
+  configuration:
+    file_path: rj92_data_preparation/custom/destruir_recursos.py
+    file_source:
+      path: rj92_data_preparation/custom/destruir_recursos.py
+  downstream_blocks:
+  - deployar
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: destruir_recursos
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - inicializar_infraestructura
+  uuid: destruir_recursos
+- all_upstream_blocks_executed: true
+  color: yellow
+  configuration:
+    file_source:
+      path: rj92_data_preparation/custom/deployar.py
+  downstream_blocks:
+  - ci_cd
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: deployar
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - destruir_recursos
+  uuid: deployar
+- all_upstream_blocks_executed: true
+  color: pink
+  configuration:
+    file_source:
+      path: rj92_data_preparation/custom/ci_cd.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: ci_cd
+  retry_config: null
+  status: failed
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - deployar
+  uuid: ci_cd
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-06-07 12:51:40.669352+00:00'
+data_integration: null
+description: ejemplo de deploy
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: deploy_model_practica
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags:
+- deploy
+- aws
+type: python
+uuid: deploy_model_practica
+variables_dir: /home/src/mage_data/rj92_data_preparation
+widgets: []

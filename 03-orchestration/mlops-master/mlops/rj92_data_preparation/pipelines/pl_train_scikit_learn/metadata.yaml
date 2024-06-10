@@ -1,0 +1,125 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_path: rj92_data_preparation/global_data_products/ds_train_sk.py
+    file_source:
+      path: rj92_data_preparation/global_data_products/ds_train_sk.py
+    global_data_product:
+      uuid: dataset_train_nyc_taxi
+  downstream_blocks:
+  - hp_tuning_scikit_learn
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: ds_train_sk
+  retry_config: null
+  status: executed
+  timeout: null
+  type: global_data_product
+  upstream_blocks: []
+  uuid: ds_train_sk
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rj92_data_preparation/markdowns/bloque_dinamico.md
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: markdown
+  name: bloque_dinamico
+  retry_config: null
+  status: updated
+  timeout: null
+  type: markdown
+  upstream_blocks: []
+  uuid: bloque_dinamico
+- all_upstream_blocks_executed: true
+  color: teal
+  configuration:
+    dynamic: true
+    file_source:
+      path: rj92_data_preparation/custom/ld_model.py
+  downstream_blocks:
+  - hp_tuning_scikit_learn
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: ld_model
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks: []
+  uuid: ld_model
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rj92_data_preparation/transformers/hp_tuning_scikit_learn.py
+  downstream_blocks:
+  - model_scikit_learn
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: hp_tuning_scikit_learn
+  retry_config: null
+  status: updated
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - ds_train_sk
+  - ld_model
+  uuid: hp_tuning_scikit_learn
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    file_source:
+      path: rj92_data_preparation/data_exporters/model_scikit_learn.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: model_scikit_learn
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - hp_tuning_scikit_learn
+  uuid: model_scikit_learn
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-06-02 02:43:20.883796+00:00'
+data_integration: null
+description: ejemplo de entrenamiento de modelo scikit-learn
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: pl_train_scikit_learn
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags:
+- practica
+- sklearn
+type: python
+uuid: pl_train_scikit_learn
+variables:
+  max_evaluations: 50
+  random_state: 7
+variables_dir: /home/src/mage_data/rj92_data_preparation
+widgets: []

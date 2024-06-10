@@ -1,0 +1,84 @@
+blocks:
+  shap_valores:
+    configuration:
+      chart_type: custom
+    data_source:
+      block_uuid: ds_dashboard
+      pipeline_schedule_id: null
+      pipeline_uuid: pl_train_xgboost
+      type: block
+    error:
+      code: 404
+      errors:
+      - 'Traceback (most recent call last):'
+      - '  File "/usr/local/lib/python3.10/site-packages/mage_ai/api/resources/BlockLayoutItemResource.py",
+        line 178, in member'
+      - '    data = block.execute_with_callback('
+      - '  File "/usr/local/lib/python3.10/site-packages/mage_ai/data_preparation/models/block/__init__.py",
+        line 1385, in execute_with_callback'
+      - '    output = self.execute_sync('
+      - '  File "/usr/local/lib/python3.10/site-packages/mage_ai/data_preparation/models/block/__init__.py",
+        line 1672, in execute_sync'
+      - '    return __execute()'
+      - '  File "/usr/local/lib/python3.10/site-packages/mage_ai/data_preparation/models/block/__init__.py",
+        line 1649, in __execute'
+      - '    raise err'
+      - '  File "/usr/local/lib/python3.10/site-packages/mage_ai/data_preparation/models/block/__init__.py",
+        line 1551, in __execute'
+      - '    output = self.execute_block('
+      - '  File "/usr/local/lib/python3.10/site-packages/mage_ai/data_preparation/models/block/__init__.py",
+        line 1891, in execute_block'
+      - '    outputs = self._execute_block('
+      - '  File "/usr/local/lib/python3.10/site-packages/mage_ai/data_preparation/models/widget/__init__.py",
+        line 317, in _execute_block'
+      - '    exec(custom_code, results)'
+      - '  File "<string>", line 7, in <module>'
+      - 'ModuleNotFoundError: No module named ''shapll'''
+      - ''
+      message: No module named 'shapll'
+      type: record_not_found
+    name: SHAP valores
+    name_new: SHAP valores
+    skip_render: false
+    type: chart
+    uuid: shap_valores
+  shap_valores_bar:
+    configuration:
+      chart_type: custom
+    data_source:
+      block_uuid: ds_dashboard
+      partitions: 0
+      pipeline_schedule_id: null
+      pipeline_uuid: pl_train_xgboost
+      type: block
+    error: null
+    name: SHAP valores bar
+    skip_render: false
+    type: chart
+    uuid: shap_valores_bar
+  shap_valores_trazado:
+    configuration:
+      chart_type: custom
+    data_source:
+      block_uuid: ds_dashboard
+      pipeline_schedule_id: null
+      pipeline_uuid: pl_train_xgboost
+      type: block
+    error: null
+    name: SHAP valores trazado
+    skip_render: false
+    type: chart
+    uuid: shap_valores_trazado
+layout:
+- - block_uuid: shap_valores
+    height: 450
+    max_width_percentage: 43
+    width: 2
+  - block_uuid: shap_valores_bar
+    height: 450
+    max_width_percentage: 43
+    width: 2
+- - block_uuid: shap_valores_trazado
+    height: 700
+    max_width_percentage: 85
+    width: 1

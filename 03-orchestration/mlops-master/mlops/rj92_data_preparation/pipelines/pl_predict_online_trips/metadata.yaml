@@ -1,0 +1,82 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rj92_data_preparation/global_data_products/gdp_xgboost.py
+    global_data_product:
+      uuid: gdp_model_xgboost
+  downstream_blocks:
+  - c_inferencia
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: gdp_xgboost
+  retry_config: null
+  status: executed
+  timeout: null
+  type: global_data_product
+  upstream_blocks: []
+  uuid: gdp_xgboost
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rj92_data_preparation/markdowns/md_viajes_prediccion.md
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: markdown
+  name: md_viajes_prediccion
+  retry_config: null
+  status: updated
+  timeout: null
+  type: markdown
+  upstream_blocks: []
+  uuid: md_viajes_prediccion
+- all_upstream_blocks_executed: true
+  color: blue
+  configuration:
+    file_source:
+      path: rj92_data_preparation/custom/c_inferencia.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: c_inferencia
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - gdp_xgboost
+  uuid: c_inferencia
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-06-06 13:00:58.604188+00:00'
+data_integration: null
+description: ejemplo de inferencia online de los viajes de taxi
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: pl_predict_online_trips
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags:
+- online
+- inference
+type: python
+uuid: pl_predict_online_trips
+variables_dir: /home/src/mage_data/rj92_data_preparation
+widgets: []

@@ -1,0 +1,111 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rj92_data_preparation/global_data_products/ds_xgb.py
+    global_data_product:
+      uuid: dataset_train_nyc_taxi
+  downstream_blocks:
+  - hp_tuning_xgboost
+  - model_xgboost
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: ds_xgb
+  retry_config: null
+  status: executed
+  timeout: null
+  type: global_data_product
+  upstream_blocks: []
+  uuid: ds_xgb
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rj92_data_preparation/transformers/hp_tuning_xgboost.py
+  downstream_blocks:
+  - model_xgboost
+  - ds_dashboard
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: hp_tuning_xgboost
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - ds_xgb
+  uuid: hp_tuning_xgboost
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rj92_data_preparation/data_exporters/model_xgboost.py
+  downstream_blocks:
+  - ds_dashboard
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: model_xgboost
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - ds_xgb
+  - hp_tuning_xgboost
+  uuid: model_xgboost
+- all_upstream_blocks_executed: true
+  color: pink
+  configuration:
+    file_source:
+      path: rj92_data_preparation/custom/ds_dashboard.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: ds_dashboard
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - hp_tuning_xgboost
+  - model_xgboost
+  uuid: ds_dashboard
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-06-03 12:47:08.048162+00:00'
+data_integration: null
+description: ejemplo de entrenamiento de modelo xgboost
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: pl_train_xgboost
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags:
+- practica
+- xgboost
+type: python
+uuid: pl_train_xgboost
+variables:
+  early_stopping_rounds: 1
+  max_depth: 10
+  max_evaluations: 1
+variables_dir: /home/src/mage_data/rj92_data_preparation
+widgets: []

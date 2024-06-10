@@ -1,0 +1,18 @@
+triggers:
+- description: null
+  envs: []
+  last_enabled_at: 2024-06-06 12:47:13.713406+00:00
+  name: tg_validate_retrain_model
+  pipeline_uuid: pl_retrain_model
+  schedule_interval: '@hourly'
+  schedule_type: time
+  settings:
+    allow_blocks_to_fail: true
+    create_initial_pipeline_run: true
+    landing_time_enabled: false
+    skip_if_previous_running: true
+  sla: null
+  start_time: 2024-06-06 12:00:00+00:00
+  status: inactive
+  token: 877247f818034ffb9a24da69fa73fd6e
+  variables: {}

@@ -1,0 +1,61 @@
+inputs:
+  DOLocationID:
+    options: []
+    style:
+      input_type: null
+      multiline: null
+    type: text_field
+  PULocationID:
+    options:
+    - label: '1'
+      value: '1'
+    - label: '2'
+      value: '2'
+    - label: '4'
+      value: '4'
+    - label: '8'
+      value: '8'
+    - label: '100'
+      value: '00'
+    style:
+      input_type: number
+      multiline: null
+    type: dropdown_menu
+  trip_distance:
+    options: []
+    style:
+      input_type: number
+      multiline: null
+    type: text_field
+layout:
+- - variable: trip_distance
+    width: 1
+- - variable: DOLocationID
+    width: 1
+  - variable: PULocationID
+    width: 1
+variables:
+  DOLocationID:
+    description: null
+    input: DOLocationID
+    name: DO Location
+    required: true
+    types:
+    - string
+    uuid: null
+  PULocationID:
+    description: null
+    input: PULocationID
+    name: PU Location
+    required: true
+    types:
+    - string
+    uuid: null
+  trip_distance:
+    description: null
+    input: trip_distance
+    name: Trip distance
+    required: true
+    types:
+    - float
+    uuid: null

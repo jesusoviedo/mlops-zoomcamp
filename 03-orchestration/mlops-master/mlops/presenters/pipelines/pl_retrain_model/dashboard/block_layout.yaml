@@ -1,0 +1,119 @@
+blocks:
+  completed_pipeline_runs_daily_pl_retrain_model_z1:
+    configuration:
+      chart_type: time series line chart
+      group_by:
+      - execution_date
+      metrics:
+      - aggregation: count_distinct
+        column: id
+      time_interval: day
+    data_source:
+      pipeline_uuid: pl_retrain_model
+      type: pipeline_runs
+    name: Completed pipeline runs daily
+    type: chart
+    uuid: completed_pipeline_runs_daily_pl_retrain_model_z1
+  failed_pipeline_runs_daily_pl_retrain_model_u9:
+    configuration:
+      chart_type: time series line chart
+      group_by:
+      - execution_date
+      metrics:
+      - aggregation: count_distinct
+        column: id
+      time_interval: day
+    data_source:
+      pipeline_uuid: pl_retrain_model
+      type: pipeline_runs
+    name: Failed pipeline runs daily
+    type: chart
+    uuid: failed_pipeline_runs_daily_pl_retrain_model_u9
+  pipeline_run_status_pl_retrain_model_y1:
+    configuration:
+      chart_style: horizontal
+      chart_type: bar chart
+      group_by:
+      - status
+      metrics:
+      - aggregation: count_distinct
+        column: id
+      y_sort_order: descending
+    data_source:
+      pipeline_uuid: pl_retrain_model
+      type: pipeline_runs
+    name: Pipeline run status
+    type: chart
+    uuid: pipeline_run_status_pl_retrain_model_y1
+  pipeline_runs_daily_pl_retrain_model_n0:
+    configuration:
+      chart_type: time series line chart
+      group_by:
+      - execution_date
+      metrics:
+      - aggregation: count_distinct
+        column: id
+      time_interval: day
+    data_source:
+      pipeline_uuid: pl_retrain_model
+      type: pipeline_runs
+    name: Pipeline runs daily
+    type: chart
+    uuid: pipeline_runs_daily_pl_retrain_model_n0
+  trigger_active_status_pl_retrain_model_t8:
+    configuration:
+      chart_type: bar chart
+      group_by:
+      - status
+      metrics:
+      - aggregation: count_distinct
+        column: id
+      y_sort_order: descending
+    data_source:
+      pipeline_uuid: pl_retrain_model
+      type: pipeline_schedules
+    name: Trigger active status
+    type: chart
+    uuid: trigger_active_status_pl_retrain_model_t8
+  trigger_frequency_pl_retrain_model_j3:
+    configuration:
+      chart_style: horizontal
+      chart_type: bar chart
+      group_by:
+      - schedule_interval
+      metrics:
+      - aggregation: count_distinct
+        column: id
+      y_sort_order: descending
+    data_source:
+      pipeline_uuid: pl_retrain_model
+      type: pipeline_schedules
+    name: Trigger frequency
+    type: chart
+    uuid: trigger_frequency_pl_retrain_model_j3
+  trigger_types_pl_retrain_model_a9:
+    configuration:
+      chart_type: pie chart
+      group_by:
+      - schedule_type
+    data_source:
+      pipeline_uuid: pl_retrain_model
+      type: pipeline_schedules
+    name: Trigger types
+    type: chart
+    uuid: trigger_types_pl_retrain_model_a9
+layout:
+- - block_uuid: trigger_active_status_pl_retrain_model_t8
+    width: 1
+  - block_uuid: trigger_types_pl_retrain_model_a9
+    width: 1
+  - block_uuid: trigger_frequency_pl_retrain_model_j3
+    width: 2
+- - block_uuid: pipeline_run_status_pl_retrain_model_y1
+    width: 1
+  - block_uuid: pipeline_runs_daily_pl_retrain_model_n0
+    width: 2
+- - block_uuid: completed_pipeline_runs_daily_pl_retrain_model_z1
+    width: 1
+  - block_uuid: failed_pipeline_runs_daily_pl_retrain_model_u9
+    width: 1

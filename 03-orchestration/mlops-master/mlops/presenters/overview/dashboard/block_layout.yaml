@@ -1,0 +1,125 @@
+blocks:
+  histograma_de_rendimiento_xg:
+    configuration:
+      chart_type: histogram
+      group_by:
+      - rmse_Booster
+      x_axis_label_format: return value.toFixed(3)
+      x_tooltip_label_format: return 2
+      y_axis_label_format: ''
+      y_tooltip_label_format: 'const [xMin, xMax] = values.values;
+
+        return `${xMin.toFixed(3)} to ${xMax.toFixed(3)}`'
+    data_source:
+      type: chart_code
+    error: null
+    name: Histograma de rendimiento XG
+    name_new: Histograma de rendimiento XG
+    skip_render: false
+    type: chart
+    uuid: histograma_de_rendimiento_xg
+  metrica_mse:
+    configuration:
+      chart_type: time series bar chart
+      group_by:
+      - start_time
+      metrics:
+      - aggregation: average
+        column: mse_Booster
+      - aggregation: average
+        column: mse_Lasso
+      - aggregation: average
+        column: mse_LinearRegression
+      time_interval: day
+      x_axis_label_format: 'MMM DD '
+    data_source:
+      type: chart_code
+    error: null
+    name: Metrica MSE
+    name_new: Metrica MSE
+    skip_render: false
+    type: chart
+    uuid: metrica_mse
+  metrica_rmse:
+    configuration:
+      chart_type: time series line chart
+      design:
+        x_grid_lines_hidden: true
+        y_grid_lines_hidden: true
+        y_values_smooth: true
+      group_by:
+      - start_time
+      metrics:
+      - aggregation: average
+        column: rmse_Booster
+      - aggregation: average
+        column: rmse_LinearRegression
+      - aggregation: average
+        column: rmse_Lasso
+      time_interval: original
+      x_axis_label_format: h:mm a
+      x_grid_lines_hidden: true
+      y_axis_label_format: return value
+      y_grid_lines_hidden: true
+      y_values_smooth: true
+    data_source:
+      type: chart_code
+    error: null
+    name: Metrica RMSE
+    name_new: Metrica RMSE
+    skip_render: false
+    type: chart
+    uuid: metrica_rmse
+  run_pie_char_model:
+    configuration:
+      chart_type: pie chart
+      group_by:
+      - model
+    data_source:
+      type: chart_code
+    error: null
+    name: Run pie char model
+    name_new: Run pie char model
+    skip_render: false
+    type: chart
+    uuid: run_pie_char_model
+  total_run_por_modelo:
+    configuration:
+      chart_style: horizontal
+      chart_type: bar chart
+      group_by:
+      - model
+      metrics:
+      - aggregation: count_distinct
+        column: run_id
+      y_sort_order: descending
+      y_tooltip_label_format: return `${value} total runs`
+    data_source:
+      type: chart_code
+    error: null
+    name: Total run por modelo
+    name_new: Total run por modelo
+    skip_render: false
+    type: chart
+    uuid: total_run_por_modelo
+layout:
+- - block_uuid: metrica_rmse
+    height: 400
+    max_width_percentage: 50
+    width: 1
+  - block_uuid: metrica_mse
+    height: 400
+    max_width_percentage: 50
+    width: 1
+- - block_uuid: run_pie_char_model
+    height: 400
+    max_width_percentage: 32
+    width: 1
+  - block_uuid: histograma_de_rendimiento_xg
+    height: 400
+    max_width_percentage: 35
+    width: 1
+  - block_uuid: total_run_por_modelo
+    height: 400
+    max_width_percentage: 34
+    width: 1
