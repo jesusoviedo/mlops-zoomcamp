@@ -1,23 +1,18 @@
 import pandas as pd
+from utils_trip_data.prepare_data import data_transformation
 
 if 'transformer' not in globals():
     from mage_ai.data_preparation.decorators import transformer
 
 
 @transformer
-def read_dataframe(df:pd.DataFrame, *args, **kwargs) -> pd.DataFrame:
+def read_dataframe(datfra:pd.DataFrame, **kwargs) -> pd.DataFrame:
 
-    # una funcion que calcular el target
-    df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)
-    df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)
+    datfra = data_transformation.create_target_duration(datfra)
 
-    df['duration'] = df.tpep_dropoff_datetime - df.tpep_pickup_datetime
-    df.duration = df.duration.dt.total_seconds() / 60
-
-    # una funcion que realiza una limpieza de datos
-    df = df[(df.duration >= 1) & (df.duration <= 60)]
-
-    categorical = ['PULocationID', 'DOLocationID']
-    df[categorical] = df[categorical].astype(str)
+    list_categorias = ['PULocationID', 'DOLocationID']
+    datfra = data_transformation.clean_data(datfra, list_categorias)
     
-    return df
+    print(f"rows -> {datfra.shape[0]}")
+
+    return datfra

@@ -99,6 +99,7 @@ type: python
 uuid: pl_data_preparation
 variables:
   anho: 2023
+  categoricas: '[''PULocationID'', ''DOLocationID'']'
   mes_fin_excluyendo: 4
   mes_ini: 3
 variables_dir: /home/src/mage_data/homework_03
