@@ -8,12 +8,11 @@ if 'data_exporter' not in globals():
 @data_exporter
 def export_data(train_model, **kwargs):
 
-    mlflow.set_tracking_uri("sqlite:///mlflow/mlflow.db")
+    mlflow.set_tracking_uri("http://mlflow:5000")  #sqlite:///mlflow/mlflow.db
     mlflow.set_experiment("orchestration_hw3")
 
     dicVec, linReg = train_model
 
-    #with mlflow.start_run():
         
     mlflow.sklearn.log_model(linReg, artifact_path="hw3_lin_reg_mod")
 

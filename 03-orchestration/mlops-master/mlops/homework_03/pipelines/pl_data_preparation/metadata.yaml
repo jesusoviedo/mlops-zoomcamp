@@ -67,7 +67,7 @@ blocks:
   language: python
   name: hw_3_exportar_artifactor
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: data_exporter
   upstream_blocks:
