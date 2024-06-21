@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 
 02-experiment-tracking/mlruns/
+05-monitoring/taxi_monitoring/data/*.parquet
