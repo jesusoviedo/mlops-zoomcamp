@@ -161,3 +161,6 @@ cython_debug/
 
 02-experiment-tracking/mlruns/
 05-monitoring/taxi_monitoring/data/*.parquet
+05-monitoring/taxi_monitoring/models/*
+05-monitoring/homework_5/data/*.parquet
+05-monitoring/homework_5/model/*
