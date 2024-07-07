@@ -25,7 +25,7 @@ def get_input_path(year, month):
 
 
 def get_output_path(year, month):
-    default_output_pattern = 's3://nyc-duration/taxi_type=fhv/year={year:04d}/month={month:02d}/predictions.parquet'
+    default_output_pattern = f'taxi_type=yellow_year={year:04d}_month={month:02d}.parquet'
     output_pattern = os.getenv('OUTPUT_FILE_PATTERN', default_output_pattern)
     return output_pattern.format(year=year, month=month)
 
@@ -40,7 +40,7 @@ def read_data(filename):
             }
         }
 
-        return pd.read_parquet('s3://nyc-duration/file.parquet', storage_options=options)
+        return pd.read_parquet(filename, storage_options=options)
     else:
         return pd.read_parquet(filename)
 
@@ -54,8 +54,8 @@ def save_data(df_result, filename):
     else:
         DIRECTORIO_OUT = "output"
         os.mkdir(f"{DIRECTORIO_OUT}") if not os.path.exists(f"{DIRECTORIO_OUT}") else None
-        output_file = f'{DIRECTORIO_OUT}/{filename.split("out/")[1]}'            
-        df_result.to_parquet(output_file, engine='pyarrow', compression=None, index=False)
+        output_file = f'{DIRECTORIO_OUT}/{filename}'            
+        df_result.to_parquet(output_file, engine='pyarrow', index=False)
 
 
 def prepare_data(df, categorical):
@@ -73,7 +73,7 @@ def main(year, month):
     input_file = get_input_path(year, month)
     output_file = get_output_path(year, month)
 
-    with open('model.bin', 'rb') as f_in:
+    with open('artifacts/model.bin', 'rb') as f_in:
         dv, lr = pickle.load(f_in)
 
     categorical = ['PULocationID', 'DOLocationID']
@@ -92,7 +92,6 @@ def main(year, month):
     df_result['ride_id'] = df['ride_id']
     df_result['predicted_duration'] = y_pred
 
-    #df_result.to_parquet(output_file, engine='pyarrow', index=False)
     save_data(df_result, output_file)
 
 if __name__ == "__main__":

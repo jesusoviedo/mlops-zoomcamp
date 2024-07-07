@@ -164,3 +164,4 @@ cython_debug/
 05-monitoring/taxi_monitoring/models/*
 05-monitoring/homework_5/data/*.parquet
 05-monitoring/homework_5/model/*
+06-best-practice/homework_6/output/*
